@@ -150,7 +150,46 @@ public class Game {
      */
     public String checkGameWinner(char [][]grid){
         String result = "None";
-        //Student code goes here ...
+        boolean ifXWin = false;
+        boolean ifYWin = false;
+        int countTotalTurn = 0;
+        for(int i=0;i<3;i++)
+        {
+            int numberOfXInVertically = 0;
+            int numberOfOInVertically = 0;
+            int numberOfXInHorizontal = 0;
+            int numberOfOInHorizontal = 0;
+            for(int j=0;j<3;j++)
+            {
+                if(grid[i][j] == 'x' || grid[i][j] == 'o') countTotalTurn = countTotalTurn + 1;
+                if(grid[i][j] == 'x')numberOfXInVertically = numberOfXInVertically + 1;
+                else if(grid[i][j] == 'o')numberOfOInVertically = numberOfOInVertically + 1;
+                if(grid[j][i] == 'x')numberOfXInHorizontal = numberOfXInHorizontal + 1;
+                else if(grid[j][i] == 'o')numberOfOInHorizontal = numberOfOInHorizontal + 1;
+
+            }
+            if(numberOfXInVertically == 3 || numberOfXInHorizontal == 3)
+            {
+                result = "X wins";
+                return result;
+            }
+            if(numberOfOInHorizontal == 3 || numberOfOInVertically == 3)
+            {
+                result = "O wins";
+                return result;
+            }
+
+        }
+        if(grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2] && grid[2][2] == 'x')
+            result = "X wins";
+        else if(grid[0][2] == grid[1][1] && grid[1][1] == grid[2][0] && grid[1][1] == 'x')
+            result = "X wins";
+        else if(grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2] && grid[2][2] == 'o')
+            result = "O wins";
+        else if(grid[0][2] == grid[1][1] && grid[1][1] == grid[2][0] && grid[1][1] == 'o')
+            result = "O wins";
+        else if(countTotalTurn == 9)
+            result = "Tie";
         return result;
     }
 
